@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'display_name.dart';
+import 'edit_display_name.dart';
+import 'edit_phone_number.dart';
 
 void main() {
   runApp(MyApp());
@@ -69,14 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
     _setDisplayName(fullName);
   }
 
-  // _navEditPhoneNumber(BuildContext context)async {
-  //   final phoneNumber= await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => EditPhoneNumber()),
-  //   );
-  //   if (phoneNumber != null)
-  //     _setPhoneNumber(phoneNumber);
-  // }
+  _navEditPhoneNumber(BuildContext context)async {
+    final phoneNumber= await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EditPhoneNumber()),
+    );
+    if (phoneNumber != null)
+      _setPhoneNumber(phoneNumber);
+  }
 
   // _navEditEmail(BuildContext context)async {
   //   final email= await Navigator.push(
@@ -140,10 +141,46 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-
   buildPhoneNumberField(){
-
+    return GestureDetector(
+      onTap: () =>{
+        _navEditPhoneNumber(context)
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1.0, color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          children:<Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
+                  child: Text(
+                    'Phone',
+                    style: TextStyle( color: Colors.grey),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                  child: Text(phoneNumber),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
   }
   buildEmailField(){
 
@@ -181,10 +218,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
-                      Padding(padding: EdgeInsets.all(30.0),
+                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
                         child: buildDisplayNameField(),
                         ),
-                      // buildPhoneNumberField(),
+                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
+                        child: buildPhoneNumberField(),
+                      ),
                       // buildEmailField(),
                       // buildBioField(),
 
