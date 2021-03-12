@@ -20,6 +20,9 @@ class EditPhoneNumber extends StatelessWidget{
             data:ThemeData(primaryColor:Colors.grey),
             child: TextField(
               controller: _phoneNumberController,
+              decoration: InputDecoration(
+                  labelText: "Your phone number",
+                  border: InputBorder.none),
             ),
           ),
         ),
