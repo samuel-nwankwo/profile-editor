@@ -226,7 +226,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       // buildEmailField(),
                       // buildBioField(),
-
                     ],
                   ),
                 ),
