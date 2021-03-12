@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,16 +17,15 @@ class MyApp extends StatelessWidget {
       ),
 
       home: MyHomePage(
-          title: 'Edit Profile',
-          name:'A simple name'),
+          title: 'Edit Profile'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title, this.name}) : super(key: key);
+  MyHomePage({Key key, this.title}) : super(key: key);
 
-  final String name;
+
   final String title;
 
   @override
@@ -34,8 +33,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+
   String displayName = 'Jane Doe';
+
   _navEditDisplayName(BuildContext context)async {
     final result = await Navigator.push(
       context,
@@ -46,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _setDisplayName(String result){
     setState(() {
-
     displayName = result;
   });
   }
@@ -65,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
           GestureDetector(
               onTap: () {
                 _navEditDisplayName(context);
-            },
+                },
             child: Text(displayName),
           ),
         ]
