@@ -93,9 +93,6 @@ class EditDisplayName extends StatelessWidget{
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () =>{
-
-                print(_firstNameController.text),
-                print(_lastNameController.text),
                   Navigator.pop(context,
                 _firstNameController.text +" " +_lastNameController.text)
                 },
