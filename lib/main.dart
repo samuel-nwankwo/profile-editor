@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'edit_display_name.dart';
+import 'edit_email.dart';
 import 'edit_phone_number.dart';
 
 void main() {
@@ -79,14 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _setPhoneNumber(phoneNumber);
   }
 
-  // _navEditEmail(BuildContext context)async {
-  //   final email= await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => EditEmail()),
-  //   );
-  //   if (email != null)
-  //     _setEmail(email);
-  // }
+  _navEditEmail(BuildContext context)async {
+    final email= await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EditEmail()),
+    );
+    if (email != null)
+      _setEmail(email);
+  }
 
   // _navEditBio(BuildContext context)async {
   //   final bio = await Navigator.push(
@@ -183,7 +184,45 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   buildEmailField(){
-
+    return GestureDetector(
+      onTap: () =>{
+        _navEditEmail(context)
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1.0, color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          children:<Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
+                  child: Text(
+                    'Email',
+                    style: TextStyle( color: Colors.grey),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                  child: Text(emailAddress),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
   }
   buildBioField(){
 
@@ -224,7 +263,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
                         child: buildPhoneNumberField(),
                       ),
-                      // buildEmailField(),
+                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
+                        child: buildEmailField(),
+                      ),
                       // buildBioField(),
                     ],
                   ),
