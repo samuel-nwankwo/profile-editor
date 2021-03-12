@@ -40,6 +40,7 @@ dev_dependencies:
 flutter:
   assets:
     - images/profile_pic.png
+    - images/profile_pic_edit.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

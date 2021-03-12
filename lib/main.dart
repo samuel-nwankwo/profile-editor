@@ -3,42 +3,42 @@ import 'edit_bio.dart';
 import 'edit_display_name.dart';
 import 'edit_email.dart';
 import 'edit_phone_number.dart';
+import 'edit_pic.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ProfileEditorApp());
 }
 
-class MyApp extends StatelessWidget {
+class ProfileEditorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme:ThemeData(
           backgroundColor: Colors.white,
       ),
-      home: MyHomePage(
+      home: ProfileEditor(
           title: 'Edit Profile'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class ProfileEditor extends StatefulWidget {
+  ProfileEditor({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ProfileEditorState createState() => _ProfileEditorState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ProfileEditorState extends State<ProfileEditor> {
 
-  String displayName = 'Jane Doe';
+  String displayName = 'John Doe';
   String phoneNumber = '888-888-8000';
   String emailAddress = 'jdoe@aol.com';
-  String bioSummary = 'Hi, I am Jane';
+  String bioSummary = 'Hi, I am John';
 
   void _setDisplayName(String fullName){
     setState(() {
@@ -97,13 +97,25 @@ class _MyHomePageState extends State<MyHomePage> {
       _setBio(bio);
   }
 
-
-
+  GestureDetector _navEditPic() {
+    return GestureDetector(
+      onTap: () =>{
+        Navigator.push(
+        context,
+          MaterialPageRoute(builder: (context) => EditPic()),
+        ),
+      },
+      child: CircleAvatar(
+        radius: 50.0,
+        backgroundImage: AssetImage('images/profile_pic.png'),
+      ),
+    );
+  }
   GestureDetector buildDisplayNameField(){
     return GestureDetector(
-        onTap: () =>{
-      _navEditDisplayName(context)
-    },
+      onTap: () =>{
+        _navEditDisplayName(context)
+      },
       child: Container(
         decoration: BoxDecoration(
           border: Border(
@@ -111,31 +123,31 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         child: Row(
-            children:<Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.0, bottom:5.0),
-                    child: Text(
-                      'Name',
-                      style: TextStyle( color: Colors.grey),
-                    ),
+          children:<Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
+                  child: Text(
+                    'Name',
+                    style: TextStyle( color: Colors.grey),
                   ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
-                    child: Text(displayName),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Container(),
-              ),
-              Icon(
-                Icons.arrow_forward_ios_sharp,
-                color: Colors.grey,
-              ),
-            ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                  child: Text(displayName),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+              color: Colors.grey,
+            ),
+          ],
         ),
       ),
     );
@@ -237,26 +249,27 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           children:<Widget>[
             Expanded(
-        child:Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
-                  child: Text(
-                    'Bio',
-                    style: TextStyle( color: Colors.grey),
+              child:Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom:5.0),
+                    child: Text(
+                      'Bio',
+                      style: TextStyle( color: Colors.grey),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
-                  child: Text(
-                    bioSummary,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                    child: Text(
+                      bioSummary,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
                   ),
-                ),
-              ],
-            ),),
+                ],
+              ),
+            ),
             Expanded(
               child: Container(),
             ),
@@ -269,6 +282,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
 
@@ -291,10 +305,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: EdgeInsets.only(top:16.0, bottom:8.0
                   ),
-                    child: CircleAvatar(
-                      radius: 50.0,
-                      backgroundImage: AssetImage('images/profile_pic.png'),
-                    ),
+                  child: _navEditPic(),
                 ),
                 Padding(
                   padding: EdgeInsets.all(16.0),
