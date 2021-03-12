@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -33,7 +32,6 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-
 
 class _MyHomePageState extends State<MyHomePage> {
 
@@ -295,6 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                     child: CircleAvatar(
                       radius: 50.0,
+                      backgroundImage: AssetImage('images/profile_pic.png'),
                     ),
                 ),
                 Padding(
