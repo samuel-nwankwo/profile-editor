@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'edit_bio.dart';
 import 'edit_display_name.dart';
 import 'edit_email.dart';
 import 'edit_phone_number.dart';
@@ -89,15 +90,15 @@ class _MyHomePageState extends State<MyHomePage> {
       _setEmail(email);
   }
 
-  // _navEditBio(BuildContext context)async {
-  //   final bio = await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => EditBio()),
-  //   );
-  //   if (bio != null)
-  //     _setBio(bio);
-  // }
-  //
+  _navEditBio(BuildContext context)async {
+    final bio = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EditBio()),
+    );
+    if (bio != null)
+      _setBio(bio);
+  }
+
 
 
   GestureDetector buildDisplayNameField(){
@@ -225,7 +226,50 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   buildBioField(){
-
+    return GestureDetector(
+      onTap: () =>{
+        _navEditBio(context)
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1.0, color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          children:<Widget>[
+            Expanded(
+        child:Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
+                  child: Text(
+                    'Bio',
+                    style: TextStyle( color: Colors.grey),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                  child: Text(
+                    bioSummary,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+              ],
+            ),),
+            Expanded(
+              child: Container(),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
   }
   @override
   Widget build(BuildContext context) {
@@ -266,7 +310,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
                         child: buildEmailField(),
                       ),
-                      // buildBioField(),
+                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
+                        child:Expanded(
+                        child:(buildBioField()),),
+                      ),
                     ],
                   ),
                 ),
