@@ -10,7 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      theme:ThemeData(
+          backgroundColor: Colors.white,
+      ),
 
       home: MyHomePage(title: 'Edit Profile'),
     );
@@ -89,7 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(

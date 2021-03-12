@@ -1,27 +1,16 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DisplayName extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-
-      home: EditNamePage(title: "What's your name?"),
-    );
-  }
-}
-
-class EditNamePage extends StatefulWidget {
-  EditNamePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class DisplayName extends StatefulWidget{
+  DisplayName({Key key}) : super(key: key);
 
   @override
   _EditNamePageState createState() => _EditNamePageState();
+
 }
 
-class _EditNamePageState  extends State<EditNamePage> {
+class _EditNamePageState  extends State<DisplayName> {
   int _counter = 0;
   void _incrementCounter() {
     setState(() {
@@ -43,16 +32,26 @@ class _EditNamePageState  extends State<EditNamePage> {
           ),
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text(name,
-                style: TextStyle( color: Colors.grey),
+              Align(
+                alignment: Alignment.topLeft,
+                child:Padding(
+                  padding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 5.0),
+                  child: Text(
+                    name,
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                        fontWeight:FontWeight.bold ),
+                  ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 1.0),
-                child: Text('Input',
-                style: TextStyle( color: Colors.black),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child:Padding(
+                  padding: EdgeInsets.only(left:10.0, bottom: 5.0,),
+                  child: Text('Input',
+                    style: TextStyle( color: Colors.black),
+                  ),
                 ),
               ),
           ],
@@ -64,47 +63,64 @@ class _EditNamePageState  extends State<EditNamePage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text(
-            widget.title,
-            style: TextStyle(color: Colors.black)
+        automaticallyImplyLeading:true,
+        leading: BackButton(
+          color: Colors.black,
         ),
+        backgroundColor: Colors.white,
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
-          Container(
-            child:Column(
+          Padding(
+            padding:EdgeInsets.only(left: 30.0, bottom: 10.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child:Text("What's your name?",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 20.0 ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(30.0),
+            child: Row(
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            buildEditName('First Name'),
-                            Container(width:20,),
-                            buildEditName('Last Name'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                buildEditName('First Name'),
+                Container(width:20),
+                buildEditName('Last Name'),
               ],
             ),
           ),
+          Expanded(
+            child: Container(),
+          ),
+          Padding(
+            padding:EdgeInsets.all(30.0),
+            child:
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary:Colors.black,
+                  onPrimary:Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0),
+                  ),
+                ),
+                onPressed: _incrementCounter,
+                child: Text('Update',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),Expanded(
+            child: Container(),
+          ),
         ],
       ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }}
