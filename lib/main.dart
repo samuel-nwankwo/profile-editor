@@ -66,10 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DisplayName()),
+                  MaterialPageRoute(builder: (context) => EditDisplayName()),
               );
             },
-            child: Text('Press here'),
+            child: TextField(
+              readOnly: true,
+            ),
             // onChanged: (text) {
             //   print("First text field: $text");
             // },

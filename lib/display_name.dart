@@ -2,59 +2,63 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DisplayName extends StatefulWidget{
-  DisplayName({Key key}) : super(key: key);
+class EditDisplayName extends StatefulWidget{
+  EditDisplayName({Key key}) : super(key: key);
 
   @override
   _EditNamePageState createState() => _EditNamePageState();
 
 }
 
-class _EditNamePageState  extends State<DisplayName> {
-  int _counter = 0;
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+class _EditNamePageState  extends State<EditDisplayName> {
 
-  }
-  buildEditName(String name){
+  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _lastNameController = TextEditingController();
+
+  buildEditFirstName(){
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
           shape: BoxShape.rectangle,
+        ),
+        child:Padding(
+          padding: EdgeInsets.only(left:10.0, bottom: 5.0,),
+          child:Theme(
+            data:ThemeData(primaryColor:Colors.grey),
+            child: TextField(
+              controller: _firstNameController,
+              decoration: InputDecoration(
+                labelText: "First Name",
+                border: InputBorder.none,
+                focusColor:Colors.red,
+              ),
+            ),
           ),
-          child: Column(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child:Padding(
-                  padding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 5.0),
-                  child: Text(
-                    name,
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                        fontWeight:FontWeight.bold ),
-                  ),
-                ),
+        ),
+      ),
+    );
+  }
+  buildEditLastName(){
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          shape: BoxShape.rectangle,
+        ),
+        child:Padding(
+          padding: EdgeInsets.only(left:10.0, bottom: 5.0,),
+          child:Theme(
+            data:ThemeData(primaryColor:Colors.grey),
+            child: TextField(
+              controller: _lastNameController,
+              decoration: InputDecoration(
+                labelText: "Last Name",
+                border: InputBorder.none,
+                focusColor:Colors.red,
               ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child:Padding(
-                  padding: EdgeInsets.only(left:10.0, bottom: 5.0,),
-                  child: Text('Input',
-                    style: TextStyle( color: Colors.black),
-                  ),
-                ),
-              ),
-          ],
+            ),
+          ),
         ),
       ),
     );
@@ -89,9 +93,9 @@ class _EditNamePageState  extends State<DisplayName> {
             padding: EdgeInsets.all(30.0),
             child: Row(
               children: <Widget>[
-                buildEditName('First Name'),
+                buildEditFirstName(),
                 Container(width:20),
-                buildEditName('Last Name'),
+                buildEditLastName(),
               ],
             ),
           ),
@@ -104,6 +108,10 @@ class _EditNamePageState  extends State<DisplayName> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
+                onPressed: () =>{
+                print(_firstNameController.text),
+                print(_lastNameController.text)
+                },
                 style: ElevatedButton.styleFrom(
                   primary:Colors.black,
                   onPrimary:Colors.white,
@@ -111,7 +119,7 @@ class _EditNamePageState  extends State<DisplayName> {
                     borderRadius: BorderRadius.circular(0.0),
                   ),
                 ),
-                onPressed: _incrementCounter,
+
                 child: Text('Update',
                   textAlign: TextAlign.center,
                 ),
