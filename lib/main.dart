@@ -10,16 +10,14 @@ void main() {
 }
 
 class ProfileEditorApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme:ThemeData(
-          backgroundColor: Colors.white,
+      theme: ThemeData(
+        backgroundColor: Colors.white,
       ),
-      home: ProfileEditor(
-          title: 'Edit Profile'),
+      home: ProfileEditor(title: 'Edit Profile'),
     );
   }
 }
@@ -34,74 +32,72 @@ class ProfileEditor extends StatefulWidget {
 }
 
 class _ProfileEditorState extends State<ProfileEditor> {
-
   String displayName = 'John Doe';
   String phoneNumber = '888-888-8000';
   String emailAddress = 'jdoe@aol.com';
   String bioSummary = 'Hi, I am John';
 
-  void _setDisplayName(String fullName){
+  void _setDisplayName(String fullName) {
     setState(() {
       displayName = fullName;
     });
   }
-  void _setPhoneNumber(String number){
+
+  void _setPhoneNumber(String number) {
     setState(() {
       phoneNumber = number;
     });
   }
-  void _setEmail(String email){
+
+  void _setEmail(String email) {
     setState(() {
       emailAddress = email;
     });
   }
-  void _setBio(String bio){
+
+  void _setBio(String bio) {
     setState(() {
       bioSummary = bio;
     });
   }
 
-  _navEditDisplayName(BuildContext context)async {
-    final fullName= await Navigator.push(
+  _navEditDisplayName(BuildContext context) async {
+    final fullName = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EditDisplayName()),
     );
-    if (fullName != null)
-    _setDisplayName(fullName);
+    if (fullName != null) _setDisplayName(fullName);
   }
 
-  _navEditPhoneNumber(BuildContext context)async {
-    final phoneNumber= await Navigator.push(
+  _navEditPhoneNumber(BuildContext context) async {
+    final phoneNumber = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EditPhoneNumber()),
     );
-    if (phoneNumber != null)
-      _setPhoneNumber(phoneNumber);
+    if (phoneNumber != null) _setPhoneNumber(phoneNumber);
   }
 
-  _navEditEmail(BuildContext context)async {
-    final email= await Navigator.push(
+  _navEditEmail(BuildContext context) async {
+    final email = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EditEmail()),
     );
-    if (email != null)
-      _setEmail(email);
+    if (email != null) _setEmail(email);
   }
 
-  _navEditBio(BuildContext context)async {
+  _navEditBio(BuildContext context) async {
     final bio = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EditBio()),
     );
-    if (bio != null)
-      _setBio(bio);
+    if (bio != null) _setBio(bio);
   }
 
   GestureDetector _navEditPic() {
     return GestureDetector(
-      onTap: () =>{
+      onTap: () => {
         Navigator.push(
-        context,
+          context,
           MaterialPageRoute(builder: (context) => EditPic()),
         ),
       },
@@ -111,11 +107,10 @@ class _ProfileEditorState extends State<ProfileEditor> {
       ),
     );
   }
-  GestureDetector buildDisplayNameField(){
+
+  GestureDetector buildDisplayNameField() {
     return GestureDetector(
-      onTap: () =>{
-        _navEditDisplayName(context)
-      },
+      onTap: () => {_navEditDisplayName(context)},
       child: Container(
         decoration: BoxDecoration(
           border: Border(
@@ -123,22 +118,25 @@ class _ProfileEditorState extends State<ProfileEditor> {
           ),
         ),
         child: Row(
-          children:<Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
-                  child: Text(
-                    'Name',
-                    style: TextStyle( color: Colors.grey),
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                    child: Text(
+                      'Name',
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
-                  child: Text(displayName),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                    child: Text(displayName,
+                        overflow: TextOverflow.ellipsis, maxLines: 2),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: Container(),
@@ -153,11 +151,9 @@ class _ProfileEditorState extends State<ProfileEditor> {
     );
   }
 
-  buildPhoneNumberField(){
+  buildPhoneNumberField() {
     return GestureDetector(
-      onTap: () =>{
-        _navEditPhoneNumber(context)
-      },
+      onTap: () => {_navEditPhoneNumber(context)},
       child: Container(
         decoration: BoxDecoration(
           border: Border(
@@ -165,107 +161,108 @@ class _ProfileEditorState extends State<ProfileEditor> {
           ),
         ),
         child: Row(
-          children:<Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
-                  child: Text(
-                    'Phone',
-                    style: TextStyle( color: Colors.grey),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
-                  child: Text(phoneNumber),
-                ),
-              ],
-            ),
+          children: <Widget>[
             Expanded(
-              child: Container(),
-            ),
-            Icon(
-              Icons.arrow_forward_ios_sharp,
-              color: Colors.grey,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  buildEmailField(){
-    return GestureDetector(
-      onTap: () =>{
-        _navEditEmail(context)
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(width: 1.0, color: Colors.grey),
-          ),
-        ),
-        child: Row(
-          children:<Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom:5.0),
-                  child: Text(
-                    'Email',
-                    style: TextStyle( color: Colors.grey),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
-                  child: Text(emailAddress),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Container(),
-            ),
-            Icon(
-              Icons.arrow_forward_ios_sharp,
-              color: Colors.grey,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  buildBioField(){
-    return GestureDetector(
-      onTap: () =>{
-        _navEditBio(context)
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(width: 1.0, color: Colors.grey),
-          ),
-        ),
-        child: Row(
-          children:<Widget>[
-            Expanded(
-              child:Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(top: 5.0, bottom:5.0),
+                    padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                     child: Text(
-                      'Bio',
-                      style: TextStyle( color: Colors.grey),
+                      'Phone',
+                      style: TextStyle(color: Colors.grey),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                    child: Text(phoneNumber,
+                        overflow: TextOverflow.ellipsis, maxLines: 2),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  buildEmailField() {
+    return GestureDetector(
+      onTap: () => {_navEditEmail(context)},
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1.0, color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                     child: Text(
-                      bioSummary,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                      'Email',
+                      style: TextStyle(color: Colors.grey),
                     ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                    child: Text(emailAddress,
+                        overflow: TextOverflow.ellipsis, maxLines: 2),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  buildBioField() {
+    return GestureDetector(
+      onTap: () => {_navEditBio(context)},
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1.0, color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                    child: Text(
+                      'Bio',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+                    child: Text(bioSummary,
+                        overflow: TextOverflow.ellipsis, maxLines: 2),
                   ),
                 ],
               ),
@@ -285,44 +282,48 @@ class _ProfileEditorState extends State<ProfileEditor> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
-            widget.title,
-            style: TextStyle(color: Colors.black)
-        ),
+        title: Text(widget.title, style: TextStyle(color: Colors.black)),
       ),
       body: ListView(
         children: <Widget>[
           Container(
-            child:Column(
+            child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top:16.0, bottom:8.0
-                  ),
+                  padding: EdgeInsets.only(top: 16.0, bottom: 8.0),
                   child: _navEditPic(),
                 ),
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
-                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 30.0, top: 20.0, right: 30.0),
                         child: buildDisplayNameField(),
-                        ),
-                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 30.0, top: 20.0, right: 30.0),
                         child: buildPhoneNumberField(),
                       ),
-                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 30.0, top: 20.0, right: 30.0),
                         child: buildEmailField(),
                       ),
-                      Padding(padding: EdgeInsets.only(left:30.0, top: 20.0, right:30.0),
-                        child:Expanded(
-                        child:(buildBioField()),),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 30.0, top: 20.0, right: 30.0),
+                        child: Expanded(
+                          child: (buildBioField()),
+                        ),
                       ),
                     ],
                   ),
