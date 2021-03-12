@@ -21,11 +21,7 @@ class EditDisplayName extends StatelessWidget{
             data:ThemeData(primaryColor:Colors.grey),
             child: TextField(
               controller: _firstNameController,
-              decoration: InputDecoration(
-                labelText: "First Name",
-                border: InputBorder.none,
-                focusColor:Colors.red,
-              ),
+
             ),
           ),
         ),
@@ -45,11 +41,6 @@ class EditDisplayName extends StatelessWidget{
             data:ThemeData(primaryColor:Colors.grey),
             child: TextField(
               controller: _lastNameController,
-              decoration: InputDecoration(
-                labelText: "Last Name",
-                border: InputBorder.none,
-                focusColor:Colors.red,
-              ),
             ),
           ),
         ),
