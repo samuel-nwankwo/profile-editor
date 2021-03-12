@@ -35,25 +35,75 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   String displayName = 'Jane Doe';
+  String phoneNumber = '888-888-8000';
+  String emailAddress = 'jdoe@aol.com';
+  String bioSummary = 'Hi, I am Jane';
+
+  void _setDisplayName(String fullName){
+    setState(() {
+      displayName = fullName;
+    });
+  }
+  void _setPhoneNumber(String number){
+    setState(() {
+      phoneNumber = number;
+    });
+  }
+  void _setEmail(String email){
+    setState(() {
+      emailAddress = email;
+    });
+  }
+  void _setBio(String bio){
+    setState(() {
+      bioSummary = bio;
+    });
+  }
 
   _navEditDisplayName(BuildContext context)async {
-    final result = await Navigator.push(
+    final fullName= await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EditDisplayName()),
     );
-    if (result != null)
-    _setDisplayName(result);
+    if (fullName != null)
+    _setDisplayName(fullName);
   }
 
-  void _setDisplayName(String result){
-    setState(() {
-    displayName = result;
-  });
-  }
+  // _navEditPhoneNumber(BuildContext context)async {
+  //   final phoneNumber= await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => EditPhoneNumber()),
+  //   );
+  //   if (phoneNumber != null)
+  //     _setPhoneNumber(phoneNumber);
+  // }
+
+  // _navEditEmail(BuildContext context)async {
+  //   final email= await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => EditEmail()),
+  //   );
+  //   if (email != null)
+  //     _setEmail(email);
+  // }
+
+  // _navEditBio(BuildContext context)async {
+  //   final bio = await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => EditBio()),
+  //   );
+  //   if (bio != null)
+  //     _setBio(bio);
+  // }
+  //
 
 
-  Container buildDisplayNameField(){
-    return Container(
+  GestureDetector buildDisplayNameField(){
+    return GestureDetector(
+        onTap: () =>{
+      _navEditDisplayName(context)
+    },
+      child: Container(
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(width: 1.0, color: Colors.grey),
@@ -71,10 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle( color: Colors.grey),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _navEditDisplayName(context);
-                      },
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
                     child: Text(displayName),
                   ),
                 ],
@@ -83,11 +131,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(),
               ),
               Icon(
-                Icons.arrow_forward,
+                Icons.arrow_forward_ios_sharp,
                 color: Colors.grey,
               ),
             ],
         ),
+      ),
     );
   }
 
@@ -133,13 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     children: <Widget>[
                       Padding(padding: EdgeInsets.all(30.0),
-                        child: GestureDetector(
-                          onTap: () =>{
-                            _navEditDisplayName(context)
-                            },
-                          child: buildDisplayNameField(),
+                        child: buildDisplayNameField(),
                         ),
-                      ),
                       // buildPhoneNumberField(),
                       // buildEmailField(),
                       // buildBioField(),
