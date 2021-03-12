@@ -2,18 +2,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class EditDisplayName extends StatefulWidget{
+class EditDisplayName extends StatelessWidget{
   EditDisplayName({Key key}) : super(key: key);
 
-  @override
-  _EditNamePageState createState() => _EditNamePageState();
-
-}
-
-class _EditNamePageState  extends State<EditDisplayName> {
-
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
   buildEditFirstName(){
     return Expanded(
@@ -109,8 +102,11 @@ class _EditNamePageState  extends State<EditDisplayName> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () =>{
+
                 print(_firstNameController.text),
-                print(_lastNameController.text)
+                print(_lastNameController.text),
+                  Navigator.pop(context,
+                _firstNameController.text +" " +_lastNameController.text)
                 },
                 style: ElevatedButton.styleFrom(
                   primary:Colors.black,
