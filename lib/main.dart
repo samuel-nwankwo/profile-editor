@@ -15,22 +15,22 @@ class MyApp extends StatelessWidget {
       theme:ThemeData(
           backgroundColor: Colors.white,
       ),
-
       home: MyHomePage(
           title: 'Edit Profile'),
     );
   }
 }
 
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
 
   final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
 
 class _MyHomePageState extends State<MyHomePage> {
 
@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context,
       MaterialPageRoute(builder: (context) => EditDisplayName()),
     );
+    if (result != null)
     _setDisplayName(result);
   }
 
@@ -51,25 +52,47 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-  Column buildDisplayNameField(){
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 12.0),
-            child: Text('Name',
-              style: TextStyle( color: Colors.grey),
-            ),
+  Container buildDisplayNameField(){
+    return Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1.0, color: Colors.grey),
           ),
-          GestureDetector(
-              onTap: () {
-                _navEditDisplayName(context);
-                },
-            child: Text(displayName),
-          ),
-        ]
+        ),
+        child: Row(
+            children:<Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom:5.0),
+                    child: Text(
+                      'Name',
+                      style: TextStyle( color: Colors.grey),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _navEditDisplayName(context);
+                      },
+                    child: Text(displayName),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              Icon(
+                Icons.arrow_forward,
+                color: Colors.grey,
+              ),
+            ],
+        ),
     );
   }
+
+
+
   buildPhoneNumberField(){
 
   }
@@ -106,14 +129,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16.0
-                  ),
+                  padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
-                      buildDisplayNameField(),
+                      Padding(padding: EdgeInsets.all(30.0),
+                        child: GestureDetector(
+                          onTap: () =>{
+                            _navEditDisplayName(context)
+                            },
+                          child: buildDisplayNameField(),
+                        ),
+                      ),
                       // buildPhoneNumberField(),
                       // buildEmailField(),
                       // buildBioField(),
+
                     ],
                   ),
                 ),
