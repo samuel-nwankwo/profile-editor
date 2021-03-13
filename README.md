@@ -31,6 +31,7 @@ and press enter.
 5. Next run the command [flutter doctor] from any directory to set up the sdk
 
 #### Java
+
 1. You will need to have Java 8 downloaded on your system you can download it
 [here](https://www.java.com/en/dowload/).
 2. Open the downloaded file and install.
@@ -57,3 +58,14 @@ are having trouble finding it you can see what it looks like
 [./sdkmanager --licenses]. Select all y's.
 6. Lastly press the green play button to run main.dart.
 7. The emulator should be up and running an good to go.
+
+### Built With
+
+[Flutter](https://flutter.dev/) - Beautiful native applications
+
+### Authors
+
+Samuel Nwankwo
+
+
+
